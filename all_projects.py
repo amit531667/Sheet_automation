@@ -11,13 +11,13 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-def myn():
+def data_frame(url,array_key):
     headersParam = {
         "username": "amit.kumar@taskmo.com",
         "authorization": "Authorization: Basic YW1pdC5rdW1hckB0YXNrbW8uY29tOlRNYW1pdEAxOTk0"
     }
 
-    url = "https://isp.taskmo.in/myn/leads/liveData"
+    url = url
 
     #try:
     request = Request(url, headers=headersParam)
@@ -25,7 +25,7 @@ def myn():
     a = urlopen(request).read()
     b = json.loads(a.decode('utf-8'))
     from json_normalize import json_normalize
-    df = pd.json_normalize(b, 'leads')
+    df = pd.json_normalize(b, array_key)
     return df
 
 
