@@ -30,7 +30,7 @@ def data_frame(url,array_key):
 
 
 
-def upload_to_sheet(data_frame,spreadsheet_key,wks_name,path):
+def upload_to_sheet(data_frame,spreadsheet_key,wks_name,path,val):
     import gspread
     from oauth2client.service_account import ServiceAccountCredentials
     from df2gspread import df2gspread as d2g
@@ -39,5 +39,5 @@ def upload_to_sheet(data_frame,spreadsheet_key,wks_name,path):
     gc = gspread.authorize(credentials)
     spreadsheet_key = spreadsheet_key
     wks_name = wks_name
-    d2g.upload(data_frame, spreadsheet_key, wks_name, credentials=credentials, row_names=False, clean=True)
+    d2g.upload(data_frame, spreadsheet_key, wks_name, credentials=credentials, row_names=False, clean=val)
     return "uploaded"
